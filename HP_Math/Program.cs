@@ -2,7 +2,7 @@
 Console.WriteLine("Lets Pratice our Math Skills! Harry Potter Style...\nPress Any key to start.");
 Console.ReadKey();
 
-var user = new User();  
+var user = new UserService();
 
 var greetingService = new GreetingService(user);
 greetingService.GetName();
