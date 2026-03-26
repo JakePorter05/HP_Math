@@ -2,7 +2,7 @@
 
 internal class YearHelper
 {
-    string PrintYear(int year)
+    internal static string PrintYear(int year)
     {
         switch (year)
         {

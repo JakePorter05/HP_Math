@@ -2,7 +2,8 @@
 
 internal interface IGame 
 {
+    Revise? Revise { get; }
     void GenerateProblem();
     void CheckAnswer();
-    bool ContinueOrExit();
+    bool Continue();
 }

@@ -28,7 +28,7 @@ internal class GreetingService
     internal void GetHouse()
     {
         Console.Clear();
-        Console.WriteLine($"Welcome {PrintYear(User?.Year ?? 1)} year. What house are you in?");
+        Console.WriteLine($"Welcome {YearHelper.PrintYear(User?.Year ?? 1)} year. What house are you in?");
         Console.WriteLine($"""
                             G - {Houses.Gryffindor}
                             H - {Houses.Hufflepuff}
@@ -67,6 +67,4 @@ internal class GreetingService
                 break;
         }
     }
-
-    
 }

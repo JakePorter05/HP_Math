@@ -2,7 +2,9 @@
 
 internal class Multiplication : Game, IGame
 {
-    public Multiplication(User? user) : base(user)
+    public Revise? Revise { get => base.InternalRevise; }
+
+    public Multiplication(User user) : base(user, GameType.Multiplication)
     {
     }
 
@@ -14,6 +16,9 @@ internal class Multiplication : Game, IGame
 
     public void GenerateProblem()
     {
+        if (QuestionNumber == 0)
+            StartTime = DateTime.Now;
+
         GenerateBasicNumbers();
 
         Console.WriteLine($"What is {FirstNumber} * {SecondNumber}?");
@@ -21,8 +26,8 @@ internal class Multiplication : Game, IGame
         Answer = int.Parse(Console.ReadLine() ?? "0");
     }
 
-    bool IGame.ContinueOrExit()
+    bool IGame.Continue()
     {
-        return ContinueOrExit();
+        return Continue();
     }
 }

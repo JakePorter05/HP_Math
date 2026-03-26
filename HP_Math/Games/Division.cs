@@ -2,7 +2,9 @@
 
 internal class Division : Game, IGame
 {
-    public Division(User? user) : base(user)
+    public Revise? Revise { get => base.InternalRevise; }
+
+    public Division(User user) : base(user, GameType.Division)
     {
     }
 
@@ -14,10 +16,13 @@ internal class Division : Game, IGame
 
     public void GenerateProblem()
     {
+        if (QuestionNumber == 0)
+            StartTime = DateTime.Now;
+
         var random = new Random();
         do
         {
-            if (User?.Year < 5)
+            if (InternalRevise?.UserNav?.Year < 5)
             {
                 FirstNumber = random.Next(1, 50);
                 SecondNumber = random.Next(1, 50);
@@ -35,8 +40,8 @@ internal class Division : Game, IGame
         Answer = int.Parse(Console.ReadLine() ?? "0");
     }
 
-    bool IGame.ContinueOrExit()
+    bool IGame.Continue()
     {
-        return ContinueOrExit();
+        return Continue();
     }
 }

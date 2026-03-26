@@ -1,6 +1,6 @@
 ﻿namespace HP_Math.Data;
 
-public class UserRepo
+internal class UserRepo
 {
     MContext Context { get; set; }
 
@@ -10,20 +10,27 @@ public class UserRepo
         Context.Database.EnsureCreated();
     }
 
-    internal async Task<IEnumerable<User>> GetAllUsersAsync()
+    internal IEnumerable<User> GetAllUsers()
     {
-        return await Context.Users.ToListAsync();
+        return Context.Users.ToList();
     }
 
-    internal async Task AddUserAsync(User user)
+    internal User GetOrAddUser(User user)
     {
+        var existingUser = Context.Users.FirstOrDefault(u => u.Name == user.Name &&
+                                                             u.House == user.House &&
+                                                             u.Year == user.Year);
+        if (existingUser != null) 
+            return existingUser;
+
         Context.Users.Add(user);
-        await Context.SaveChangesAsync();
+        Context.SaveChanges();
+        return user;
     }
 
-    internal async Task RemoveAllAsync()
+    internal void RemoveAllUsers()
     {
         Context.Users.RemoveRange(Context.Users);
-        await Context.SaveChangesAsync();
+        Context.SaveChanges();
     }
 }

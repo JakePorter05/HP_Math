@@ -3,22 +3,23 @@ namespace HP_Math.Games;
 
 abstract class Game
 {
-    internal User? User { get; set; }
+    internal Revise? InternalRevise { get; set; }
     internal int FirstNumber { get; set; }
     internal int SecondNumber { get; set; }
     internal int Answer { get; set; }
     internal int QuestionNumber { get; set; } = 0;
+    public DateTime StartTime { get; set; }
 
-    internal Game(User? user)
+    internal Game(User user, string gameType)
     {
-        User = user;
+        InternalRevise = new(user, gameType);
     }
 
     internal void GenerateBasicNumbers()
     {
         var random = new Random();
 
-        var top = User?.Year switch
+        var top = InternalRevise?.UserNav?.Year switch
         {
             1 => 10,
             2 => 10,
@@ -37,22 +38,31 @@ abstract class Game
     {
         if (correct)
         {
-            Console.WriteLine("Correct!\nPress Any key for next question.");
-            User?.Score += 1;
-            User?.TotalProblemsAttempted += 1;
+            Console.WriteLine("Correct!");
+            InternalRevise?.Score += 1;
         }
         else
         {
-            Console.WriteLine("Incorrect.\nPress Any Key for next question.");
+            Console.WriteLine("Incorrect.");
         }
+        QuestionNumber++;
+
+        if(QuestionNumber == InternalRevise?.QuestionTotal)
+        {
+            var percentage = (double)InternalRevise.Score / InternalRevise.QuestionTotal * 100;
+            InternalRevise.Grade = Grades.GetGrade((int)percentage);
+            InternalRevise.TimeTaken = DateTime.Now - StartTime;
+            Console.WriteLine($"Great revise {InternalRevise?.UserNav?.House}! You got a {InternalRevise?.Grade}. It took you {InternalRevise?.TimeTaken.TotalSeconds} seconds to complete.");
+        }
+        Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
     }
 
-    internal bool ContinueOrExit()
+    internal bool Continue()
     {
-        if (QuestionNumber < User?.Year)
-            return false;
-        else
+        if (QuestionNumber < InternalRevise?.QuestionTotal)
             return true;
+        else
+            return false;
     }
 }
