@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-namespace HP_Math.Services;
+﻿namespace HP_Math.Services;
 
 internal class GreetingService
 {

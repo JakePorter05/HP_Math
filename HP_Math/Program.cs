@@ -56,6 +56,7 @@ if (user != null)
                 break;
             default:
                 Console.WriteLine("Please select a valid option. Press any key to continue...");
+                Console.ReadKey();
                 break;
         }
 

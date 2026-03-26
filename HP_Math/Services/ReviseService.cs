@@ -21,7 +21,7 @@ internal class ReviseService
         Console.WriteLine("----------------------------------------------------------------");
         foreach (var item in topUsers)
         {
-            Console.WriteLine($"{item.UserNav?.Name} - from {item.UserNav?.House} - {item.Type} - {item.Grade} - in {item.TimeTaken.TotalSeconds.ToString("F1")}");
+            PrintRevise(item);
         }
         Console.WriteLine("----------------------------------------------------------------");
 
@@ -45,7 +45,7 @@ internal class ReviseService
             Console.WriteLine("----------------------------------------------------------------");
             foreach (var item in revises)
             {
-                Console.WriteLine($"{item.UserNav?.Name} - from {item.UserNav?.House} - {item.Type} - {item.Grade} - in {item.TimeTaken.TotalSeconds.ToString("F1")}");
+                PrintRevise(item);
             }
             Console.WriteLine("----------------------------------------------------------------");
         }
@@ -55,6 +55,11 @@ internal class ReviseService
         }
         Console.WriteLine("\nPress any key to return to the menu.");
         Console.ReadKey();
+    }
+
+    internal void PrintRevise(Revise revise)
+    {
+        Console.WriteLine($"{revise.UserNav?.Name.PadRight(20)} - from: {revise.UserNav?.House.PadRight(12)} : {revise.Type.PadRight(15)} - {revise.Grade.PadRight(25)} - in {revise.TimeTaken.TotalSeconds.ToString("F1")} seconds");
     }
 
     internal void ShowMenu()
@@ -83,6 +88,7 @@ internal class ReviseService
                     break;
                 default:
                     Console.WriteLine("Please select a valid option. Press any key to continue...");
+                    Console.ReadKey();
                     break;
             }
         } while (process);

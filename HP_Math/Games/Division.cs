@@ -35,7 +35,7 @@ internal class Division : Game, IGame
         }
         while (FirstNumber % SecondNumber != 0);
 
-        Console.WriteLine($"What is {FirstNumber} + {SecondNumber}?");
+        Console.WriteLine($"What is {FirstNumber} / {SecondNumber}?");
 
         GetAnswer();
     }
