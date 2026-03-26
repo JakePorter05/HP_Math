@@ -23,7 +23,7 @@ internal class Subtraction : Game, IGame
 
         Console.WriteLine($"What is {FirstNumber} - {SecondNumber}?");
 
-        Answer = int.Parse(Console.ReadLine() ?? "0");
+        GetAnswer();
     }
 
     bool IGame.Continue()

@@ -52,7 +52,7 @@ abstract class Game
             var percentage = (double)InternalRevise.Score / InternalRevise.QuestionTotal * 100;
             InternalRevise.Grade = Grades.GetGrade((int)percentage);
             InternalRevise.TimeTaken = DateTime.Now - StartTime;
-            Console.WriteLine($"Great revise {InternalRevise?.UserNav?.House}! You got a {InternalRevise?.Grade}. It took you {InternalRevise?.TimeTaken.TotalSeconds} seconds to complete.");
+            Console.WriteLine($"Great revise {InternalRevise?.UserNav?.House}! You got : {InternalRevise?.Grade}. It took you {InternalRevise?.TimeTaken.TotalSeconds.ToString("F1")} seconds to complete.");
         }
         Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
@@ -64,5 +64,23 @@ abstract class Game
             return true;
         else
             return false;
+    }
+
+    internal void GetAnswer()
+    {
+        string? input = null;
+        var validated = false;
+        do
+        {
+            input = Console.ReadLine();
+            if (!string.IsNullOrEmpty(input) && int.TryParse(input, out int result))
+            {
+                Answer = result;
+                validated = true;
+            }
+            else
+                Console.WriteLine("Your answer must be an integer. Please try again.");
+        }
+        while (!validated) ;
     }
 }

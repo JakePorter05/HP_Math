@@ -16,6 +16,13 @@ public class ReviseRepo
                               .ToList();
     }
 
+    internal IEnumerable<Revise> GetAllRevisesForUser(User user)
+    {
+        return Context.Revises.Where(x => x.UserId == user.Id)
+                              .Include(x => x.UserNav)
+                              .ToList();
+    }
+
     internal Revise? AddRevise(Revise? revise)
     {
         if (revise == null) return null;

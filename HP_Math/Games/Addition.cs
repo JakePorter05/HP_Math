@@ -22,8 +22,8 @@ internal class Addition : Game, IGame
         GenerateBasicNumbers();
 
         Console.WriteLine($"What is {FirstNumber} + {SecondNumber}?");
-
-        Answer = int.Parse(Console.ReadLine() ?? "0");
+        
+        GetAnswer();
     }
 
     bool IGame.Continue()

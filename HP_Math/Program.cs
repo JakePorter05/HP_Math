@@ -2,7 +2,6 @@
 Console.WriteLine("Lets Pratice our Math Skills! Harry Potter Style...\nPress Any key to start.");
 Console.ReadKey();
 
-var reviseService = new ReviseService();
 var userRepo = new UserRepo();
 var reviseRepo = new ReviseRepo();
 var user = new User();
@@ -12,6 +11,7 @@ greetingService.GetName();
 greetingService.GetYear();
 greetingService.GetHouse();
 user = userRepo.GetOrAddUser(user);
+var reviseService = new ReviseService(user);
 
 Console.WriteLine($"Press any key to Enter {user?.House} common room and start your practice {user?.Name}...");
 Console.ReadKey();
@@ -26,7 +26,7 @@ if (user != null)
         Console.WriteLine("S : Subtraction");
         Console.WriteLine("M : Multiplication");
         Console.WriteLine("D : Division");
-        Console.WriteLine("V : View High Scores");
+        Console.WriteLine("V : View Revises");
         Console.WriteLine("E : Exit");
         var choice = Console.ReadLine();
 
@@ -55,6 +55,7 @@ if (user != null)
                 continueGame = false;
                 break;
             default:
+                Console.WriteLine("Please select a valid option. Press any key to continue...");
                 break;
         }
 
