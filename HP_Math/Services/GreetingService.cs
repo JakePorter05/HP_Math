@@ -14,6 +14,11 @@ internal class GreetingService
         Console.Clear();
         Console.WriteLine("What is your Name?");
         string? name = Console.ReadLine();
+        while (string.IsNullOrEmpty(name))
+        { 
+            Console.WriteLine("Please enter a valid name.");
+            name = Console.ReadLine();
+        }
         User?.Name = name ?? "";
     }
 

@@ -59,7 +59,7 @@ internal class ReviseService
 
     internal void PrintRevise(Revise revise)
     {
-        Console.WriteLine($"{revise.UserNav?.Name.PadRight(20)} - from: {revise.UserNav?.House.PadRight(12)} : {revise.Type.PadRight(15)} - {revise.Grade.PadRight(25)} - in {revise.TimeTaken.TotalSeconds.ToString("F1")} seconds");
+        Console.WriteLine($"{revise.UserNav?.Name.PadRight(20)} a {revise.UserNav?.Year} year from {revise.UserNav?.House.PadRight(12)} : {revise.Type.PadRight(15)} - {revise.Grade.PadRight(25)} - in {revise.TimeTaken.TotalSeconds.ToString("F1")} seconds");
     }
 
     internal void ShowMenu()
