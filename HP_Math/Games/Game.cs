@@ -7,7 +7,7 @@ abstract class Game
     internal int FirstNumber { get; set; }
     internal int SecondNumber { get; set; }
     internal int Answer { get; set; }
-    internal int QuestionNumber { get; set; } = 0;
+    internal int QuestionNumber { get; set; }
     public DateTime StartTime { get; set; }
 
     internal Game(User user, string gameType)

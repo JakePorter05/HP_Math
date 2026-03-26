@@ -5,7 +5,7 @@ internal class User
     public int Id { get; set; } 
     public string Name { get; set; } = "";
     public string House { get; set; } = "";
-    public int Year { get; set; } = 0;
+    public int Year { get; set; }
 
     ICollection<Revise> Revises { get; set; } = [];
 }

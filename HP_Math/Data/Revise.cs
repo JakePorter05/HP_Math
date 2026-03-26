@@ -3,7 +3,7 @@
 internal class Revise
 {
     public int Id { get; set; }
-    public int Score { get; set; } = 0; 
+    public int Score { get; set; }
     public int QuestionTotal { get; set; } = 4;
     public string Type { get; set; } = "";  
     public DateTime Date { get; set; } = DateTime.Now;

@@ -2,19 +2,19 @@
 
 internal class ReviseService
 {
-    internal User user { get; set; }
-    internal ReviseRepo reviseRepo { get; set; }
+    internal User User { get; set; }
+    internal ReviseRepo ReviseRepo { get; set; }
 
     internal ReviseService(User user)
     {
-        this.user = user;
-        reviseRepo = new ReviseRepo();
+        this.User = user;
+        ReviseRepo = new ReviseRepo();
     }
 
     internal void ShowLast50()
     {
         Console.Clear();
-        var users = reviseRepo.GetAllRevisesWUsers();
+        var users = ReviseRepo.GetAllRevisesWUsers();
         var topUsers = users.OrderByDescending(u => u.Date).Take(50);
 
         Console.WriteLine("Revise History:");
@@ -29,7 +29,7 @@ internal class ReviseService
         var input = Console.ReadLine();
         if (input?.Trim().ToLower() == "clear")
         {
-            reviseRepo.RemoveAllRevises();
+            ReviseRepo.RemoveAllRevises();
             Console.WriteLine("High scores have been reset. Press any key to return to the menu.");
             Console.ReadKey();
         }
@@ -38,7 +38,7 @@ internal class ReviseService
     internal void ShowRevisesForStudent()
     {
         Console.Clear();
-        var revises = reviseRepo.GetAllRevisesForUser(user);
+        var revises = ReviseRepo.GetAllRevisesForUser(User);
         if (revises.Any())
         {
             Console.WriteLine("Revise History:");
@@ -51,7 +51,7 @@ internal class ReviseService
         }
         else
         {
-            Console.WriteLine($"No revises found for student: {user.Name}");
+            Console.WriteLine($"No revises found for student: {User.Name}");
         }
         Console.WriteLine("\nPress any key to return to the menu.");
         Console.ReadKey();
