@@ -10,7 +10,7 @@ abstract class Game
     internal int QuestionNumber { get; set; }
     public DateTime StartTime { get; set; }
 
-    internal Game(User user, string gameType)
+    internal Game(User user, GameType gameType)
     {
         InternalRevise = new(user, gameType);
     }
@@ -50,7 +50,7 @@ abstract class Game
         if(QuestionNumber == InternalRevise?.QuestionTotal)
         {
             var percentage = (double)InternalRevise.Score / InternalRevise.QuestionTotal * 100;
-            InternalRevise.Grade = Grades.GetGrade((int)percentage);
+            InternalRevise.Grade = GradeHelper.GetGrade((int)percentage);
             InternalRevise.TimeTaken = DateTime.Now - StartTime;
             Console.WriteLine($"Great revise {InternalRevise?.UserNav?.House}! You got : {InternalRevise?.Grade}. It took you {InternalRevise?.TimeTaken.TotalSeconds.ToString("F1")} seconds to complete.");
         }

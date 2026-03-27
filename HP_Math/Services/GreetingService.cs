@@ -27,7 +27,7 @@ internal class GreetingService
         Console.Clear();
         Console.WriteLine($"What year are you in {User?.Name}? (1-7)\nIll make sure to amp up the difficulty by your year. \nWe must be ready for OWL's, and NEWT's.");
         var year = Console.ReadLine();
-        while (string.IsNullOrEmpty(year) || !int.TryParse(year, out _))
+        while (string.IsNullOrEmpty(year) || !int.TryParse(year, out int result) || result < 1 || result > 7)
         {
             Console.WriteLine("Please enter a valid year between 1 and 7.");
             year = Console.ReadLine();
@@ -56,22 +56,22 @@ internal class GreetingService
                 case "g":
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Gryffindor! Brave and Chivalrous! Let's see how brave you are with some math problems!");
-                    User?.House = Houses.Gryffindor;
+                    User?.House = Houses.Gryffindor.ToString();
                     break;
                 case "h":
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("Hufflepuff! Loyal and Kind! Let's see how loyal you are with some math problems!");
-                    User?.House = Houses.Hufflepuff;
+                    User?.House = Houses.Hufflepuff.ToString();
                     break;
                 case "r":
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine("Ravenclaw! Wise and Creative! Let's see how wise you are with some math problems!");
-                    User?.House = Houses.Ravenclaw;
+                    User?.House = Houses.Ravenclaw.ToString();
                     break;
                 case "s":
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Slytherin! Ambitious and Cunning! Let's see how ambitious you are with some math problems!");
-                    User?.House = Houses.Slytherin;
+                    User?.House = Houses.Slytherin.ToString();
                     break;
                 default:
                     Console.WriteLine("Please Enter a valid house.");

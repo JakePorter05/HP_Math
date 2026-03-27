@@ -14,11 +14,11 @@ internal class Revise
     public User? UserNav { get; set; }
 
     public Revise() { }
-    public Revise(User user, string gameType)
+    public Revise(User user, GameType gameType)
     {
         UserId = user.Id;
         UserNav = user;
         QuestionTotal += user?.Year ?? 1;
-        Type = gameType;
+        Type = gameType.ToString();
     }
 }
